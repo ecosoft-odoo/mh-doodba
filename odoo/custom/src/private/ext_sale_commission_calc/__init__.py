@@ -19,7 +19,14 @@
 #
 ##############################################################################
 
+# With import stock, we can't update (don't know the reason yet)
+# so we will need to update first, add this import and restart
+# import stock
 import commission_calc
 import wizard
+import account_invoice
+import promo_code
+import sale
+import invoice_info
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

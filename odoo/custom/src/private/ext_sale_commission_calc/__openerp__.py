@@ -36,7 +36,13 @@
     'depends': ['sale', 'sale_commission_calc'],
     'demo': [
     ],
-    'data': ['commission_calc_view.xml'
+    'data': [
+        'security/ir.model.access.csv',
+        'commission_calc_view.xml',
+        'account_invoice_view.xml',
+        'invoice_info_view.xml',
+        'commission_rule_view.xml',
+        'sale_view.xml',
     ],
     'test': [
     ],
