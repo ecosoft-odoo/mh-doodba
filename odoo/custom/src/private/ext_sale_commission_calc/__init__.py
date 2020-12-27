@@ -21,7 +21,7 @@
 
 # With import stock, we can't update (don't know the reason yet)
 # so we will need to update first, add this import and restart
-# import stock
+import stock
 import commission_calc
 import wizard
 import account_invoice
