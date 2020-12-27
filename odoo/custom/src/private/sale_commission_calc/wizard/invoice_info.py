@@ -19,8 +19,8 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
 import openerp.addons.decimal_precision as dp
+from openerp.osv import fields, osv
 
 
 class invoice_info(osv.osv_memory):
@@ -31,33 +31,45 @@ class invoice_info(osv.osv_memory):
     _description = "Invoice Info"
 
     def _get_invoice_id(self, cr, uid, context=None):
-        line_obj = self.pool.get('commission.worksheet.line').browse(cr, uid, context['active_id'])
+        line_obj = self.pool.get("commission.worksheet.line").browse(
+            cr, uid, context["active_id"]
+        )
         return line_obj.invoice_id and line_obj.invoice_id.id or False
 
     _columns = {
-        'invoice_id': fields.many2one('account.invoice', 'Invoice Number', readonly=True),
-        'invoice_info_line': fields.one2many('invoice.info.line', 'invoice_info_id', 'Invoice Info Lines', readonly=True)
+        "invoice_id": fields.many2one(
+            "account.invoice", "Invoice Number", readonly=True
+        ),
+        "invoice_info_line": fields.one2many(
+            "invoice.info.line", "invoice_info_id", "Invoice Info Lines"
+        ),
     }
 
-    _defaults = {
-        'invoice_id': _get_invoice_id
-    }
+    _defaults = {"invoice_id": _get_invoice_id}
 
     def onchange_invoice_id(self, cr, uid, ids, invoice_id, context=None):
-        invoice = self.pool.get('account.invoice').browse(cr, uid, invoice_id)
+        invoice = self.pool.get("account.invoice").browse(cr, uid, invoice_id)
         invoice_info_line = []
         for line in invoice.invoice_line:
-            invoice_info_line.append([0, 0, {
-                'product_id': line.product_id and line.product_id.id or False,
-                'name': line.name,
-                'quantity': line.quantity,
-                'uos_id': line.uos_id and line.uos_id.id or False,
-                'price_unit': line.price_unit,
-                'price_subtotal': line.price_subtotal
-                }])
-        return {'value': {
-            'invoice_info_line': invoice_info_line,
-        }}
+            line_val = self._prepare_invoice_info_line(line)
+            invoice_info_line.append([0, 0, line_val])
+        return {
+            "value": {
+                "invoice_info_line": invoice_info_line,
+            }
+        }
+
+    def _prepare_invoice_info_line(self, line):
+        return {
+            "invoice_line_id": line and line.id or False,
+            "product_id": line.product_id and line.product_id.id or False,
+            "name": line.name,
+            "quantity": line.quantity,
+            "uos_id": line.uos_id and line.uos_id.id or False,
+            "price_unit": line.price_unit,
+            "price_subtotal": line.price_subtotal,
+        }
+
 
 invoice_info()
 
@@ -70,14 +82,24 @@ class invoice_info_line(osv.osv_memory):
     _description = "Invoice Info Lines"
 
     _columns = {
-        'invoice_info_id': fields.many2one('invoice.info', 'Invoice Info'),
-        'product_id': fields.many2one('product.product', 'Product'),
-        'name': fields.char('Description'),
-        'quantity': fields.float('Quantity', digits_compute=dp.get_precision('Product Unit of Measure')),
-        'uos_id': fields.many2one('product.uom', 'UoM'),
-        'price_unit': fields.float('Unit Price', digits_compute=dp.get_precision('Account')),
-        'price_subtotal': fields.float('Subtotal', digits_compute=dp.get_precision('Account')),
+        "invoice_line_id": fields.many2one("account.invoice.line", readonly=True),
+        "invoice_info_id": fields.many2one("invoice.info", "Invoice Info", readonly=True),
+        "product_id": fields.many2one("product.product", "Product", readonly=False),
+        "name": fields.char("Description", readonly=True),
+        "quantity": fields.float(
+            "Quantity", digits_compute=dp.get_precision("Product Unit of Measure"), readonly=True
+        ),
+        "uos_id": fields.many2one("product.uom", "UoM", readonly=True),
+        "price_unit": fields.float(
+            "Unit Price", digits_compute=dp.get_precision("Account"),
+            readonly=True,
+        ),
+        "price_subtotal": fields.float(
+            "Subtotal", digits_compute=dp.get_precision("Account"),
+            readonly=True,
+        ),
     }
+
 
 invoice_info_line()
 

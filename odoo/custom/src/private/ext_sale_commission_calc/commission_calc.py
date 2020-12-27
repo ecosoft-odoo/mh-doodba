@@ -63,6 +63,22 @@ class commission_worksheet(osv.osv):
         invoice_ids = map(lambda x: x[0], cr.fetchall())
         return invoice_ids
 
+    # overwrite percent commission with promo_code
+    def _get_percent_product_category(self, cr, uid, line):
+        if line.promo_code:
+            return line.promo_code.percent_commission
+        return super(commission_worksheet, self)._get_percent_product_category(cr, uid, line)
+
+    def _get_percent_product(self, cr, uid, line):
+        if line.promo_code:
+            return line.promo_code.percent_commission
+        return super(commission_worksheet, self)._get_percent_product(cr, uid, line)
+
+    def _get_percent_product_step(self, cr, uid, line):
+        if line.promo_code:
+            return line.promo_code.percent_commission
+        return super(commission_worksheet, self)._get_percent_product_step(cr, uid, line)
+
 commission_worksheet()
 
 
