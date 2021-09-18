@@ -1,22 +1,20 @@
-[![Doodba deployment](https://img.shields.io/badge/deployment-doodba-informational)](https://github.com/Tecnativa/doodba)
-[![Last template update](https://img.shields.io/badge/last%20template%20update-v2.6.1-informational)](https://github.com/Tecnativa/doodba-copier-template/tree/v2.6.1)
-[![Odoo](https://img.shields.io/badge/odoo-v7.0-a3478a)](https://github.com/odoo/odoo/tree/7.0)
-[![BSL-1.0 license](https://img.shields.io/badge/license-BSL--1.0-success})](LICENSE)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
+Installation Note:
 
-# myproject-odoo - a Doodba deployment
+* Install Doodba as normal, make sure to use postgres 9.6
+* To install Java 7 add following in apt.txt
 
-This project is a Doodba scaffolding. Check upstream docs on the matter:
+```
+openjdk-7-jdk
+```
 
-- [General Doodba docs](https://github.com/Tecnativa/doodba).
-- [Doodba copier template docs](https://github.com/Tecnativa/doodba-copier-template)
-- [Doodba QA docs](https://github.com/Tecnativa/doodba-qa)
+* To restore database
 
-# Credits
+```
+# copy file into postgres container
+docker cp <file path> <postgres container name>:<file path>
 
-This project is maintained by:
+# Move into postgres container
+docker exec -it -u 0 <postgres container name> bash
+```
 
-[![Tecnativa](https://www.tecnativa.com/r/H3p)](https://www.tecnativa.com/r/bb4)
-
-Also, special thanks to
-[our dear community contributors](https://github.com/Tecnativa/doodba-copier-template/graphs/contributors).
+* Ininstall Jasper Report and Java 7 on your local machine
