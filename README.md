@@ -1,7 +1,7 @@
 Installation Note:
 
 * Install Doodba as normal, make sure to use postgres 9.6
-* To install Java 7 add following in apt.txt
+* To install Java 7 add following in apt.txt, and run > invoke img-build
 
 ```
 openjdk-7-jdk
