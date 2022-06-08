@@ -188,11 +188,11 @@
 					<text><![CDATA[เอกสารรวมทั้งสิ้น]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="64" y="48" width="288" height="15"/>
+					<reportElement x="64" y="48" width="500" height="15"/>
 					<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
 						<font fontName="Monospaced" size="11" isBold="false" pdfFontName="Garuda-Bold.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 					</textElement>
-					<text><![CDATA[กรุณาสั่งจ่ายในนาม หจก. โรงทำสมุดเม้งฮั้ว]]></text>
+					<text><![CDATA[กรุณาสั่งจ่ายในนาม หจก. โรงทำสมุดเม้งฮั้ว ธ.กรุงเทพ เลขที่ 1333-08446-3]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="2" y="48" width="62" height="15"/>
