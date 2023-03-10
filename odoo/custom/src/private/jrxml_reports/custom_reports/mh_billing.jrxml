@@ -192,7 +192,7 @@
 					<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
 						<font fontName="Monospaced" size="11" isBold="false" pdfFontName="Garuda-Bold.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 					</textElement>
-					<text><![CDATA[กรุณาสั่งจ่ายในนาม หจก. โรงทำสมุดเม้งฮั้ว ธ.กรุงเทพ เลขที่ 1333-08446-3]]></text>
+					<text><![CDATA[กรุณาสั่งจ่ายในนาม หจก. โรงทำสมุดเม้งฮั้ว ธ.กรุงเทพ เลขที่ 133-5-50523-4]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="2" y="48" width="62" height="15"/>
